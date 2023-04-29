@@ -857,7 +857,7 @@ abstract class AbstractTests {
 		CreateOptions<String, String> createOptions = CreateOptions.<String, String>builder().on(DataType.JSON)
 				.prefixes("prefix1", "prefix2").filter("@indexName==\"myindexname\"").defaultLanguage(Language.CHINESE)
 				.languageField("languageField").defaultScore(.5).scoreField("scoreField").payloadField("payloadField")
-				.maxTextFields(true).noOffsets(true).noFields(true).noFreqs(true).build();
+				.maxTextFields(true).noOffsets(true).noFields(true).noFreqs(true).noHL().build();
 		commands.ftCreate(index, createOptions, Field.tag("id").build(), Field.numeric("scoreField").build());
 		IndexInfo info = RedisModulesUtils.indexInfo(commands.ftInfo(index));
 		Assertions.assertEquals(createOptions, info.getIndexOptions());
